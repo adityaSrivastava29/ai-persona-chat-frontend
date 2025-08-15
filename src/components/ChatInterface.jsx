@@ -127,17 +127,34 @@ const ChatInterface = ({ persona, onBack }) => {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900/50">
           {messages.length === 0 ? (
             <div className="text-center text-gray-500 dark:text-gray-400 mt-8">
-              Start a conversation with {persona.name}
+              <Bot className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
+              <p className="text-lg font-medium mb-2">
+                Start a conversation with {persona.name}
+              </p>
+              <p className="text-sm">
+                Ask anything you'd like to know or discuss!
+              </p>
             </div>
           ) : (
-            messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
-            ))
+            <div className="space-y-6">
+              {messages.map((message, index) => (
+                <ChatMessage key={index} message={message} />
+              ))}
+            </div>
           )}
-          {loading && <LoadingIndicator />}
+          {loading && (
+            <div className="flex justify-start mb-6">
+              <div className="flex items-center bg-white dark:bg-gray-800 px-4 py-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+                <LoadingIndicator />
+                <span className="ml-3 text-sm text-gray-600 dark:text-gray-400">
+                  {persona.name} is thinking...
+                </span>
+              </div>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
