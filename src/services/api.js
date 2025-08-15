@@ -1,8 +1,7 @@
 // services/api.js
 import axios from "axios";
 
-const API_BASE_URL =
-  "https://ai-persona-custom-chat-app-demo1-2cue6xzl9.vercel.app/api";
+const API_BASE_URL = "http://localhost:5003/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
